@@ -224,6 +224,7 @@
       <p class="caption">▲ 入金 / 提现 / 转账 界面</p>
     </div>
     <div>
+      <p style="font-size:0.65em; color:var(--orange); margin-bottom:4px;">🏠 HOME豪门 建议入金方案（TMGM 官方最低入金仅 $100）</p>
       <table class="mini-table">
         <tr><th>方案</th><th>入金</th><th>适合</th></tr>
         <tr><td>🟢 初级</td><td>USD 500</td><td>新手体验</td></tr>
@@ -252,8 +253,11 @@
     </div>
     <div>
       <div style="background:var(--bg-card); border-radius:10px; padding:16px; border:1px solid var(--gold);">
-        <p style="color:var(--gold); font-weight:700; font-size:0.85em;">🔗 入口地址</p>
-        <p style="font-size:0.72em; color:var(--blue); word-break:break-all;">signal.tmc2lnbmfs.com</p>
+        <p style="color:var(--gold); font-weight:700; font-size:0.85em;">🔗 访问方式</p>
+        <p style="font-size:0.72em; margin-bottom:2px;">🌐 <strong>官方入口：</strong><span style="color:var(--blue);">portal.tmgm.com</span></p>
+        <p style="font-size:0.65em; color:var(--text-dim); margin-top:0;">登录后 → Trading Tools → Copy Trading</p>
+        <div style="height:1px; background:#2a2a2a; margin:8px 0;"></div>
+        <p style="font-size:0.65em; color:var(--text-dim);">（部分合作伙伴可能使用专用入口，以你收到的链接为准）</p>
         <div style="margin-top:10px;">
           <p style="font-size:0.72em;">输入 3 项信息：</p>
           <p style="font-size:0.72em; margin:2px 0;">📡 <strong>MT4/MT5 Server</strong></p>
@@ -262,7 +266,7 @@
         </div>
       </div>
       <div class="hl-box" style="margin-top:10px;">
-        <p>📍 导航路径：TMGM 用户面板 → <strong>Trading Tools</strong> → <strong>Copy Trading</strong></p>
+        <p>📍 导航路径：TMGM Portal（portal.tmgm.com）→ <strong>Trading Tools</strong> → <strong>Copy Trading / Signal Trading</strong></p>
       </div>
       <p style="font-size:0.68em; color:var(--text-dim); margin-top:8px;">
         📱 也可通过 TMGM App 登录 → Copy Trading 模块
@@ -311,7 +315,7 @@
           <li>Total Return / Monthly Return</li>
           <li>Drawdown / Win Rate</li>
           <li>Followers 数量</li>
-          <li>Risk Score</li>
+          <li>交易历史记录</li>
         </ul>
         <p style="font-size:0.68em; color:var(--red); margin-top:8px;">🔴 截取整页！这将是你的 SOP 中最常用的图</p>
       </div>
@@ -344,7 +348,7 @@
       <ul style="font-size:0.7em; color:var(--text-dim);">
         <li>📊 <strong>跟单金额</strong> 输入框</li>
         <li>⚙️ <strong>风险比例</strong> 设置</li>
-        <li>📐 <strong>复制模式</strong>（Auto Scale / Multiplier / Fixed）</li>
+        <li>📐 <strong>复制模式</strong>（Automatic Proportional 自动比例 / Multiplier 乘数 / Fixed 固定）</li>
         <li>🛑 <strong>Equity Stop</strong> 止损线</li>
         <li>🔒 <strong>Max Allocation</strong> 上限</li>
       </ul>
@@ -359,9 +363,14 @@
         <div class="progress-bar" style="height:6px; background:#2a2a2a; border-radius:3px; margin:6px 0;"><div style="width:30%; height:100%; background:var(--green); border-radius:3px;"></div></div>
       </div>
       <div class="card" style="margin-top:8px;">
-        <h4>🛡️ 必须设置的风控</h4>
-        <p>🛑 <strong>Equity Stop</strong>：-10% / -15% / -20%</p>
-        <p>🔒 <strong>Max Allocation</strong>：≤ 30% 账户资金</p>
+        <h4>🛡️ 必须设置的风控（HOME建议）</h4>
+        <p>🛑 <strong>Equity Stop</strong>：建议 -10% / -15% / -20%（可自定义）</p>
+        <p>🔒 <strong>Max Allocation</strong>：建议 ≤ 30% 账户资金</p>
+      </div>
+      <div class="card" style="margin-top:8px; border-left:3px solid var(--red);">
+        <h4>⚠️ 关键步骤 — 手动激活订阅</h4>
+        <p style="font-size:0.7em;">配置完成后，订阅<strong>默认为未激活状态</strong>！</p>
+        <p style="font-size:0.68em; color:var(--text-dim);">需在 My Wallet → 找到订阅 → 点击 <strong>Activate</strong> 才会开始跟单</p>
       </div>
       <div class="warn-box">
         <p>⚠️ 不设止损 = 无限风险。这是最重要的保护！</p>
@@ -382,18 +391,21 @@
       <p class="caption">▲ TMGM Copy Trading App 跟单界面（来源: TradeGInvest）</p>
     </div>
     <div>
-      <p style="color:var(--gold); font-weight:700; font-size:0.85em;">📐 复制比例逻辑</p>
+      <p style="color:var(--gold); font-weight:700; font-size:0.85em;">📐 复制比例逻辑（简化示意）</p>
       <div style="background:var(--bg-card); border-radius:10px; padding:14px;">
-        <p style="font-size:0.75em;">您的跟单比例 = <strong style="color:var(--gold);">跟单金额 ÷ Provider 资金</strong></p>
+        <p style="font-size:0.75em;">系统根据您与 Provider 的<strong style="color:var(--gold);">资金/净值比例</strong>自动计算仓位</p>
         <div style="height:1px; background:#2a2a2a; margin:10px 0;"></div>
         <p style="font-size:0.72em;">👑 Provider 开仓 <strong>Buy Gold 1 Lot</strong></p>
         <p style="font-size:0.72em;">👤 您的比例 <strong>10%</strong> → 自动开仓 <strong style="color:var(--green);">0.1 Lot</strong></p>
       </div>
       <p style="font-size:0.7em; color:var(--text-dim); margin-top:10px;">
-        系统自动同步：开仓 · 加仓 · 平仓 · 修改 SL · 修改 TP
+        系统自动同步：开仓 · 加仓 · 平仓
       </p>
-      <p style="font-size:0.68em; color:var(--text-dim);">
-        24/7 运行 · 无需手动操作 · 无需盯盘
+      <p style="font-size:0.65em; color:var(--text-dim);">
+        （SL/TP 修改的同步取决于具体复制模式设置）
+      </p>
+      <p style="font-size:0.63em; color:var(--text-dim); margin-top:6px;">
+        ⚠️ 同一 MT4/MT5 账户不能同时作为 Provider 和 Copier
       </p>
     </div>
   </div>
@@ -471,7 +483,7 @@
   <div class="two-col">
     <div style="background:var(--bg-card); border-radius:10px; padding:14px; border:1px solid var(--orange); text-align:center;">
       <p style="color:var(--orange); font-weight:700; font-size:0.8em;">📸 截图要点 — 订阅管理页面</p>
-      <p style="font-size:0.7em; color:var(--text-dim);">Portal 内 → My Portfolio → 活跃订阅列表</p>
+      <p style="font-size:0.7em; color:var(--text-dim);">Portal 内 → My Wallet（我的钱包）→ 活跃订阅列表</p>
       <p style="font-size:0.68em; color:var(--text-dim);">截取包含以下按钮的页面：</p>
       <div style="margin-top:8px;">
         <span class="click-badge" style="background:var(--orange);">Pause</span>
@@ -496,7 +508,7 @@
 
 <!-- ===== SLIDE 11: HOME SOP OVERVIEW ===== -->
 <section>
-  <h2 style="text-align:center;">🏠 HOME豪门 简化 SOP · 8 步完成</h2>
+  <h2 style="text-align:center;">🏠 HOME豪门 简化 SOP · 9 步完成</h2>
   <div style="display:flex; gap:8px; flex-wrap:wrap; justify-content:center; margin-top:20px;">
     <div style="background:var(--bg-card); border-radius:10px; padding:10px 12px; text-align:center; min-width:90px;">
       <p style="font-size:1.4em;">📝</p>
@@ -526,6 +538,12 @@
       <p style="font-size:1.4em;">🛡️</p>
       <p style="font-size:0.68em; color:var(--gold); font-weight:700;">设止损</p>
       <p style="font-size:0.6em; color:var(--text-dim);">风控</p>
+    </div>
+    <p style="color:var(--gold); display:flex; align-items:center;">→</p>
+    <div style="background:var(--bg-card); border-radius:10px; padding:10px 12px; text-align:center; min-width:90px; border:1px solid var(--red);">
+      <p style="font-size:1.4em;">▶️</p>
+      <p style="font-size:0.68em; color:var(--gold); font-weight:700;">激活订阅</p>
+      <p style="font-size:0.6em; color:var(--text-dim);">手动启用</p>
     </div>
     <p style="color:var(--gold); display:flex; align-items:center;">→</p>
     <div style="background:var(--bg-card); border-radius:10px; padding:10px 12px; text-align:center; min-width:90px; border:1px solid var(--green);">
@@ -616,7 +634,7 @@
       <ul style="font-size:0.68em;">
         <li><strong>Provider 列表页</strong> — 所有可跟单的交易员</li>
         <li><strong>Copy 配置弹窗</strong> — 金额/比例/止损设置</li>
-        <li><strong>My Portfolio 页面</strong> — 活跃订阅管理</li>
+        <li><strong>My Wallet 页面</strong> — 活跃订阅管理</li>
         <li><strong>Pause/Stop 按钮位置</strong></li>
         <li><strong>手机 App 跟单流程</strong>（如有）</li>
         <li><strong>Provider Profile 详情页</strong></li>
