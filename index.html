@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HOME豪门 × TMGM Copy Trading 操作流程（含截图）</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.0/reveal.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.0/theme/black.min.css">
+<style>
+  :root {
+    --gold: #c9a84c;
+    --gold-light: #e0c878;
+    --gold-dark: #8b6914;
+    --bg: #0a0a0a;
+    --bg-card: #141414;
+    --bg-card2: #1a1a1a;
+    --text: #e0e0e0;
+    --text-dim: #999;
+    --red: #e74c3c;
+    --green: #27ae60;
+    --blue: #2980b9;
+    --orange: #e67e22;
+  }
+
+  .reveal { font-family: "Microsoft YaHei", "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", sans-serif; }
+  .reveal .slides section { background: var(--bg); padding: 20px 30px; text-align: left; }
+  .reveal .slides section::before {
+    content: ''; position: absolute; top: 0; left: 30px; right: 30px; height: 3px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+  .reveal h1 { font-size: 2.2em; color: var(--gold); font-weight: 700; text-align: center; }
+  .reveal h2 { font-size: 1.5em; color: var(--gold-light); font-weight: 600; }
+  .reveal h3 { font-size: 1.15em; color: var(--gold-light); }
+  .reveal p, .reveal li { font-size: 0.78em; color: var(--text); line-height: 1.55; }
+
+  /* Screenshot containers */
+  .screenshot-box {
+    background: var(--bg-card);
+    border: 1px solid #2a2a2a;
+    border-radius: 12px;
+    padding: 12px;
+    text-align: center;
+    margin: 8px 0;
+  }
+  .screenshot-box img {
+    max-width: 100%;
+    max-height: 380px;
+    border-radius: 8px;
+    object-fit: contain;
+  }
+  .screenshot-box .caption {
+    font-size: 0.65em;
+    color: var(--text-dim);
+    margin-top: 6px;
+  }
+
+  /* Annotated callout */
+  .callout {
+    position: relative;
+    display: inline-block;
+  }
+  .click-badge {
+    display: inline-block;
+    background: var(--red);
+    color: #fff;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 0.68em;
+    font-weight: 700;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
+  }
+
+  /* Two column layout */
+  .two-col { display: flex; gap: 16px; align-items: flex-start; }
+  .two-col > * { flex: 1; }
+
+  /* Cards */
+  .cards { display: grid; gap: 12px; margin: 10px 0; }
+  .cards-2 { grid-template-columns: 1fr 1fr; }
+  .cards-3 { grid-template-columns: 1fr 1fr 1fr; }
+  .card {
+    background: var(--bg-card2); border: 1px solid #2a2a2a;
+    border-radius: 10px; padding: 14px;
+  }
+  .card h4 { color: var(--gold); font-size: 0.9em; margin: 0 0 6px 0; }
+  .card p, .card li { font-size: 0.7em; margin: 3px 0; }
+
+  /* Stage badge */
+  .stage-badge {
+    display: inline-block; background: var(--gold); color: #000;
+    padding: 4px 14px; border-radius: 16px; font-weight: 700; font-size: 0.75em; margin-bottom: 8px;
+  }
+
+  /* Highlight box */
+  .hl-box {
+    background: linear-gradient(135deg, rgba(201,168,76,0.12), rgba(201,168,76,0.03));
+    border-left: 3px solid var(--gold); padding: 10px 14px; border-radius: 0 6px 6px 0; margin: 10px 0;
+  }
+  .hl-box p { margin: 3px 0; font-size: 0.72em; }
+  .warn-box {
+    background: linear-gradient(135deg, rgba(231,76,60,0.12), rgba(231,76,60,0.03));
+    border-left: 3px solid var(--red); padding: 10px 14px; border-radius: 0 6px 6px 0; margin: 10px 0;
+  }
+  .warn-box p { margin: 3px 0; font-size: 0.72em; }
+
+  /* Steps list */
+  .step-list { list-style: none; padding: 0; }
+  .step-list li {
+    padding: 8px 12px; margin: 4px 0; background: var(--bg-card);
+    border-radius: 8px; font-size: 0.75em; display: flex; align-items: center; gap: 10px;
+  }
+  .step-list .step-num {
+    background: var(--gold); color: #000; min-width: 24px; height: 24px; line-height: 24px;
+    text-align: center; border-radius: 50%; font-weight: 700; font-size: 0.85em; flex-shrink: 0;
+  }
+
+  /* Flow */
+  .flow-row {
+    display: flex; align-items: center; justify-content: center; gap: 6px; flex-wrap: wrap; margin: 12px 0;
+  }
+  .flow-step {
+    background: var(--bg-card); border: 1px solid var(--gold-dark); border-radius: 8px;
+    padding: 8px 12px; text-align: center; min-width: 70px; font-size: 0.72em;
+  }
+  .flow-arrow { color: var(--gold); font-size: 1.2em; }
+
+  /* Logo */
+  .logo-text {
+    font-size: 2.8em; font-weight: 900; letter-spacing: 4px; text-align: center;
+    background: linear-gradient(180deg, #e0c878 0%, #8b6914 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+
+  /* Scrollable container for overflow slides */
+  .scroll-area { max-height: 420px; overflow-y: auto; }
+
+  /* Table */
+  .mini-table { width: 100%; border-collapse: collapse; font-size: 0.7em; }
+  .mini-table th { background: var(--gold-dark); color: #000; padding: 6px 10px; text-align: left; }
+  .mini-table td { padding: 5px 10px; border-bottom: 1px solid #2a2a2a; color: var(--text); }
+
+  @media (max-width: 768px) {
+    .two-col, .cards-2, .cards-3 { display: block; }
+    .two-col > * { margin-bottom: 10px; }
+    .reveal h1 { font-size: 1.4em; }
+    .reveal h2 { font-size: 1.1em; }
+  }
+</style>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+
+<!-- ===== SLIDE 1: TITLE ===== -->
+<section>
+  <div class="logo-text">HOME 豪门</div>
+  <p style="text-align:center; color:var(--text-dim); letter-spacing:3px; font-size:0.85em;">× TMGM COPY TRADING</p>
+  <h1 style="font-size:1.3em; color:#e0e0e0; margin-top:20px;">📸 跟单操作流程 · 截图实战手册</h1>
+  <p style="text-align:center; color:var(--text-dim); font-size:0.75em; margin-top:20px;">
+    每一步都有截图对照 · 从开户到获利提取<br>
+    <span style="font-size:0.7em;">Copier 端 · 7 阶段 · 实景操作指南</span>
+  </p>
+  <p style="text-align:center; color:var(--gold-dark); font-size:0.65em; margin-top:30px;">
+    Source: TMGM Official · TradingFinder · Hercules.Finance · HOME豪门 Internal
+  </p>
+</section>
+
+<!-- ===== SLIDE 2: BEFORE WE START - TMGM Dashboard Overview ===== -->
+<section>
+  <span class="stage-badge">认识界面</span>
+  <h2>🖥️ TMGM 用户面板总览</h2>
+  <p style="color:var(--text-dim); font-size:0.7em;">先熟悉后台长什么样，后面操作才不会迷路</p>
+  <div class="screenshot-box">
+    <img src="https://cdn.tradingfinder.com/image/543628/025-619-tf-en-tmgm-dashboard-01.webp"
+         alt="TMGM Dashboard Overview" loading="lazy"
+         onerror="this.parentElement.innerHTML='<p style=color:var(--orange)>📷 图片加载失败 — <a href=https://cdn.tradingfinder.com/image/543628/025-619-tf-en-tmgm-dashboard-01.webp target=_blank style=color:var(--blue)>点击查看原图</a></p>'">
+    <p class="caption">▲ TMGM 用户面板首页 — 登录后看到的第一个画面（来源: TradingFinder）</p>
+  </div>
+  <div class="hl-box">
+    <p>📍 关键区域：顶部导航栏 → <strong>Trading Tools</strong> → <strong>Copy Trading</strong>（后面每一步都会用到）</p>
+  </div>
+</section>
+
+<!-- ===== SLIDE 3: STAGE 1 - Account Opening ===== -->
+<section>
+  <span class="stage-badge">第一阶段</span>
+  <h2>Step 1 · 注册 TMGM 真实账户</h2>
+  <div class="two-col">
+    <div>
+      <div class="screenshot-box">
+        <img src="https://cdn.tradingfinder.com/image/543612/025-619-tf-en-tmgm-dashboard-05.webp"
+             alt="TMGM Account Creation" loading="lazy"
+             onerror="this.parentElement.innerHTML='<p style=color:var(--orange)>📷 <a href=https://cdn.tradingfinder.com/image/543612/025-619-tf-en-tmgm-dashboard-05.webp target=_blank style=color:var(--blue)>点击查看原图</a></p>'">
+        <p class="caption">▲ 创建 Live/Demo 账户界面</p>
+      </div>
+    </div>
+    <div>
+      <ul class="step-list">
+        <li><span class="step-num">1</span> 访问 TMGM 官网注册</li>
+        <li><span class="step-num">2</span> 选择 <strong>Live Account</strong>（真实账户）</li>
+        <li><span class="step-num">3</span> 提交 KYC 文件：身份证 + 地址证明</li>
+        <li><span class="step-num">4</span> 开通 <span class="click-badge">MT4</span> 或 <span class="click-badge">MT5</span> 交易账户</li>
+      </ul>
+      <div class="hl-box">
+        <p>⚠️ Copy Trading 连接的是 MT4/MT5 账号，必须先有真实交易账户</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SLIDE 3b: STAGE 1 - Deposit ===== -->
+<section>
+  <span class="stage-badge">第一阶段</span>
+  <h2>Step 2 · 入金</h2>
+  <div class="two-col">
+    <div class="screenshot-box">
+      <img src="https://cdn.tradingfinder.com/image/543608/025-619-tf-en-tmgm-dashboard-06.webp"
+           alt="TMGM Deposit Withdrawal" loading="lazy"
+           onerror="this.parentElement.innerHTML='<p style=color:var(--orange)>📷 <a href=https://cdn.tradingfinder.com/image/543608/025-619-tf-en-tmgm-dashboard-06.webp target=_blank style=color:var(--blue)>点击查看原图</a></p>'">
+      <p class="caption">▲ 入金 / 提现 / 转账 界面</p>
+    </div>
+    <div>
+      <table class="mini-table">
+        <tr><th>方案</th><th>入金</th><th>适合</th></tr>
+        <tr><td>🟢 初级</td><td>USD 500</td><td>新手体验</td></tr>
+        <tr><td>🔵 标准</td><td>USD 1,000</td><td>稳健起步</td></tr>
+        <tr><td>🟠 高级</td><td>USD 5,000</td><td>收益目标明确</td></tr>
+        <tr><td>🔴 专业</td><td>USD 10,000+</td><td>资产配置级</td></tr>
+      </table>
+      <div class="hl-box" style="margin-top:10px;">
+        <p>🔒 资金在<strong>你自己的</strong> TMGM 账户中，交易员无法提取你的资金</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SLIDE 4: STAGE 2 - Login to Copy Trading Portal ===== -->
+<section>
+  <span class="stage-badge">第二阶段</span>
+  <h2>Step 3 · 登录 Copy Trading Portal</h2>
+  <p style="font-size:0.75em; color:var(--text-dim);">这是最关键的一步截图 — 你的用户需要看到这个界面</p>
+  <div class="two-col">
+    <div class="screenshot-box" style="border:2px solid var(--gold);">
+      <img src="https://cdn.tradingfinder.com/image/543607/025-619-tf-en-tmgm-dashboard-10.webp"
+           alt="TMGM Signal Trading Login" loading="lazy"
+           onerror="this.parentElement.innerHTML='<p style=color:var(--orange)>📷 <a href=https://cdn.tradingfinder.com/image/543607/025-619-tf-en-tmgm-dashboard-10.webp target=_blank style=color:var(--blue)>点击查看原图</a></p>'">
+      <p class="caption">▲ 👆 <strong>就是这里！</strong>Signal Trading 登录界面（来源: TradingFinder）</p>
+    </div>
+    <div>
+      <div style="background:var(--bg-card); border-radius:10px; padding:16px; border:1px solid var(--gold);">
+        <p style="color:var(--gold); font-weight:700; font-size:0.85em;">🔗 入口地址</p>
+        <p style="font-size:0.72em; color:var(--blue); word-break:break-all;">signal.tmc2lnbmfs.com</p>
+        <div style="margin-top:10px;">
+          <p style="font-size:0.72em;">输入 3 项信息：</p>
+          <p style="font-size:0.72em; margin:2px 0;">📡 <strong>MT4/MT5 Server</strong></p>
+          <p style="font-size:0.72em; margin:2px 0;">🆔 <strong>Account ID</strong></p>
+          <p style="font-size:0.72em; margin:2px 0;">🔑 <strong>Password</strong></p>
+        </div>
+      </div>
+      <div class="hl-box" style="margin-top:10px;">
+        <p>📍 导航路径：TMGM 用户面板 → <strong>Trading Tools</strong> → <strong>Copy Trading</strong></p>
+      </div>
+      <p style="font-size:0.68em; color:var(--text-dim); margin-top:8px;">
+        📱 也可通过 TMGM App 登录 → Copy Trading 模块
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SLIDE 4b: Mobile App ===== -->
+<section>
+  <span class="stage-badge">第二阶段补充</span>
+  <h2>📱 TMGM App — 移动端跟单</h2>
+  <div class="two-col">
+    <div class="screenshot-box">
+      <img src="https://tmgm-cdn2.com/image/trading/copy-phone1.webp"
+           alt="TMGM Copy Trade Provider View" loading="lazy"
+           onerror="this.parentElement.innerHTML='<p style=color:var(--orange)>📱 手机界面图 — <a href=https://tmgm-cdn2.com/image/trading/copy-phone1.webp target=_blank style=color:var(--blue)>点击查看</a></p>'">
+      <p class="caption">▲ Provider（交易员）端界面</p>
+    </div>
+    <div class="screenshot-box">
+      <img src="https://tmgm-cdn2.com/image/trading/copy-phone2.webp"
+           alt="TMGM Copy Trade Follower View" loading="lazy"
+           onerror="this.parentElement.innerHTML='<p style=color:var(--orange)>📱 手机界面图 — <a href=https://tmgm-cdn2.com/image/trading/copy-phone2.webp target=_blank style=color:var(--blue)>点击查看</a></p>'">
+      <p class="caption">▲ Follower（跟单者）端界面 — 这就是你的用户看到的</p>
+    </div>
+  </div>
+  <div class="hl-box" style="text-align:center;">
+    <p>📱 Google Play / App Store 搜索 <strong>TMGM</strong> → 下载 → 登录 → Copy Trading 模块</p>
+  </div>
+</section>
+
+<!-- ===== SLIDE 5: STAGE 3 - Select Trader ===== -->
+<section>
+  <span class="stage-badge">第三阶段</span>
+  <h2>Step 4–5 · 浏览 & 筛选交易员</h2>
+  <p style="font-size:0.75em; color:var(--text-dim);">登录 Copy Trading Portal 后会看到 Provider 列表</p>
+  <div class="two-col">
+    <div>
+      <div style="background:var(--bg-card); border-radius:10px; padding:14px; border:1px solid var(--orange);">
+        <p style="color:var(--orange); font-weight:700; font-size:0.8em;">📸 截图要点 — 这一页需要截图！</p>
+        <p style="font-size:0.7em; color:var(--text-dim);">
+          登录 Portal 后看到的 <strong>Provider 列表页</strong>，包含：
+        </p>
+        <ul style="font-size:0.7em; color:var(--text-dim);">
+          <li>Provider 名称 / 头像</li>
+          <li>Total Return / Monthly Return</li>
+          <li>Drawdown / Win Rate</li>
+          <li>Followers 数量</li>
+          <li>Risk Score</li>
+        </ul>
+        <p style="font-size:0.68em; color:var(--red); margin-top:8px;">🔴 截取整页！这将是你的 SOP 中最常用的图</p>
+      </div>
+    </div>
+    <div>
+      <p style="color:var(--gold); font-weight:700; font-size:0.8em;">🏠 HOME 筛选标准</p>
+      <table class="mini-table">
+        <tr><th>类型</th><th>年化收益</th><th>最大回撤</th></tr>
+        <tr><td style="color:var(--green);">🛡️ 保守型</td><td>20%–50%</td><td>&lt; 15%</td></tr>
+        <tr><td style="color:var(--orange);">⚖️ 平衡型</td><td>50%–100%</td><td>15%–25%</td></tr>
+        <tr><td style="color:var(--red);">🚀 激进型</td><td>100%+</td><td>&gt; 25%</td></tr>
+      </table>
+      <p style="font-size:0.68em; color:var(--text-dim); margin-top:8px;">📅 观察周期：3个月 / 6个月 / 12个月历史记录</p>
+      <div class="warn-box">
+        <p>⚠️ 不要只看最近一个月！不要只看收益率！回撤同样重要</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SLIDE 6: STAGE 4 - Copy Settings ===== -->
+<section>
+  <span class="stage-badge">第四阶段</span>
+  <h2>Step 6–7 · 配置跟单 & 风控参数</h2>
+  <p style="font-size:0.75em; color:var(--text-dim);">这是最重要的设置页面 — 资金分配 + 风险控制</p>
+  <div class="two-col">
+    <div style="background:var(--bg-card); border-radius:10px; padding:14px; border:1px solid var(--orange);">
+      <p style="color:var(--orange); font-weight:700; font-size:0.8em;">📸 截图要点 — 跟单配置页面！</p>
+      <p style="font-size:0.7em; color:var(--text-dim);">点击 Provider 的 <span class="click-badge">COPY</span> 按钮后出现：</p>
+      <ul style="font-size:0.7em; color:var(--text-dim);">
+        <li>📊 <strong>跟单金额</strong> 输入框</li>
+        <li>⚙️ <strong>风险比例</strong> 设置</li>
+        <li>📐 <strong>复制模式</strong>（Auto Scale / Multiplier / Fixed）</li>
+        <li>🛑 <strong>Equity Stop</strong> 止损线</li>
+        <li>🔒 <strong>Max Allocation</strong> 上限</li>
+      </ul>
+      <p style="font-size:0.68em; color:var(--red); margin-top:8px;">🔴 务必截取完整配置页！这是培训核心</p>
+    </div>
+    <div>
+      <div class="card">
+        <h4>💰 资金配置示例</h4>
+        <p>账户总资金：<strong style="color:var(--gold);">USD 10,000</strong></p>
+        <p>跟单 Trader A：<strong style="color:var(--green);">USD 3,000</strong> (30%)</p>
+        <p>保留现金：<strong>USD 7,000</strong> (70%)</p>
+        <div class="progress-bar" style="height:6px; background:#2a2a2a; border-radius:3px; margin:6px 0;"><div style="width:30%; height:100%; background:var(--green); border-radius:3px;"></div></div>
+      </div>
+      <div class="card" style="margin-top:8px;">
+        <h4>🛡️ 必须设置的风控</h4>
+        <p>🛑 <strong>Equity Stop</strong>：-10% / -15% / -20%</p>
+        <p>🔒 <strong>Max Allocation</strong>：≤ 30% 账户资金</p>
+      </div>
+      <div class="warn-box">
+        <p>⚠️ 不设止损 = 无限风险。这是最重要的保护！</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SLIDE 7: STAGE 5 - Auto Copy ===== -->
+<section>
+  <span class="stage-badge">第五阶段</span>
+  <h2>Step 8 · 系统自动同步交易</h2>
+  <div class="two-col">
+    <div class="screenshot-box">
+      <img src="https://tmgm-cdn.oss-cn-hongkong.aliyuncs.com/marketing/front/public/images/trading-tools/signal-trading-v4/phone.webp"
+           alt="TMGM Copy Trading App Interface" loading="lazy"
+           onerror="this.parentElement.innerHTML='<p style=color:var(--orange)>📱 <a href=https://tmgm-cdn.oss-cn-hongkong.aliyuncs.com/marketing/front/public/images/trading-tools/signal-trading-v4/phone.webp target=_blank style=color:var(--blue)>点击查看手机界面</a></p>'">
+      <p class="caption">▲ TMGM Copy Trading App 跟单界面（来源: TradeGInvest）</p>
+    </div>
+    <div>
+      <p style="color:var(--gold); font-weight:700; font-size:0.85em;">📐 复制比例逻辑</p>
+      <div style="background:var(--bg-card); border-radius:10px; padding:14px;">
+        <p style="font-size:0.75em;">您的跟单比例 = <strong style="color:var(--gold);">跟单金额 ÷ Provider 资金</strong></p>
+        <div style="height:1px; background:#2a2a2a; margin:10px 0;"></div>
+        <p style="font-size:0.72em;">👑 Provider 开仓 <strong>Buy Gold 1 Lot</strong></p>
+        <p style="font-size:0.72em;">👤 您的比例 <strong>10%</strong> → 自动开仓 <strong style="color:var(--green);">0.1 Lot</strong></p>
+      </div>
+      <p style="font-size:0.7em; color:var(--text-dim); margin-top:10px;">
+        系统自动同步：开仓 · 加仓 · 平仓 · 修改 SL · 修改 TP
+      </p>
+      <p style="font-size:0.68em; color:var(--text-dim);">
+        24/7 运行 · 无需手动操作 · 无需盯盘
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SLIDE 8: STAGE 6 - Monitoring ===== -->
+<section>
+  <span class="stage-badge">第六阶段</span>
+  <h2>Step 9–10 · 日常监控 & 暂停跟单</h2>
+  <div class="two-col">
+    <div>
+      <div class="screenshot-box">
+        <img src="https://cdn.tradingfinder.com/image/543603/025-619-tf-en-tmgm-dashboard-11.webp"
+             alt="TMGM Signal Center" loading="lazy"
+             onerror="this.parentElement.innerHTML='<p style=color:var(--orange)>📷 <a href=https://cdn.tradingfinder.com/image/543603/025-619-tf-en-tmgm-dashboard-11.webp target=_blank style=color:var(--blue)>点击查看原图</a></p>'">
+        <p class="caption">▲ Signal Center / 交易信号监控界面</p>
+      </div>
+    </div>
+    <div>
+      <div class="card">
+        <h4>📊 每日 5 分钟检查</h4>
+        <table class="mini-table">
+          <tr><td>📈 Floating PnL</td><td>浮动盈亏</td></tr>
+          <tr><td>💰 Equity</td><td>账户净值</td></tr>
+          <tr><td>📉 Drawdown</td><td>当前回撤</td></tr>
+          <tr><td>📊 Monthly Return</td><td>月收益率</td></tr>
+        </table>
+      </div>
+      <div class="card" style="margin-top:8px; border-left:3px solid var(--orange);">
+        <h4>🚩 暂停跟单信号</h4>
+        <ul style="font-size:0.7em;">
+          <li>交易风格突然改变</li>
+          <li>回撤异常扩大</li>
+          <li>风险明显增加</li>
+        </ul>
+        <p style="font-size:0.7em; margin-top:6px;">⏸️ 点击 <strong>Pause Copy</strong> → 停止复制新订单</p>
+        <p style="font-size:0.68em; color:var(--text-dim);">已有订单可选：保留 / 手动关闭</p>
+      </div>
+      <div class="hl-box">
+        <p>💡 不要因一天亏损就切换交易员 — 观察周期至少 <strong>30~90 天</strong></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SLIDE 9: Reports ===== -->
+<section>
+  <span class="stage-badge">第六阶段补充</span>
+  <h2>📋 交易报表 & 对账</h2>
+  <div class="two-col">
+    <div class="screenshot-box">
+      <img src="https://cdn.tradingfinder.com/image/543584/025-619-tf-en-tmgm-dashboard-12.webp"
+           alt="TMGM Reports" loading="lazy"
+           onerror="this.parentElement.innerHTML='<p style=color:var(--orange)>📷 <a href=https://cdn.tradingfinder.com/image/543584/025-619-tf-en-tmgm-dashboard-12.webp target=_blank style=color:var(--blue)>点击查看原图</a></p>'">
+      <p class="caption">▲ 交易报表 / 订单记录 / CSV 导出</p>
+    </div>
+    <div>
+      <ul class="step-list">
+        <li><span class="step-num">📄</span> Transaction Reports — 所有入金/提现记录</li>
+        <li><span class="step-num">📊</span> Order Reports — 所有跟单交易明细</li>
+        <li><span class="step-num">📥</span> CSV Export — 导出对账</li>
+        <li><span class="step-num">📅</span> 自定义日期范围筛选</li>
+      </ul>
+      <div class="hl-box">
+        <p>💡 HOME 建议：每周末导出一次报表，用于内部对账和绩效追踪</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SLIDE 10: STAGE 7 - Exit ===== -->
+<section>
+  <span class="stage-badge">第七阶段</span>
+  <h2>Step 11 · 停止跟单 / 获利了结</h2>
+  <div class="two-col">
+    <div style="background:var(--bg-card); border-radius:10px; padding:14px; border:1px solid var(--orange); text-align:center;">
+      <p style="color:var(--orange); font-weight:700; font-size:0.8em;">📸 截图要点 — 订阅管理页面</p>
+      <p style="font-size:0.7em; color:var(--text-dim);">Portal 内 → My Portfolio → 活跃订阅列表</p>
+      <p style="font-size:0.68em; color:var(--text-dim);">截取包含以下按钮的页面：</p>
+      <div style="margin-top:8px;">
+        <span class="click-badge" style="background:var(--orange);">Pause</span>
+        <span class="click-badge" style="background:var(--red);">Stop Copy</span>
+        <span class="click-badge" style="background:var(--blue);">Close All</span>
+      </div>
+    </div>
+    <div>
+      <div style="background:var(--bg-card2); border-radius:10px; padding:14px; border:1px solid var(--green);">
+        <p style="color:var(--green); font-weight:700; font-size:0.85em;">✅ Stop Copy 后</p>
+        <p style="font-size:0.72em;">✅ 系统停止复制新订单</p>
+        <p style="font-size:0.72em;">✅ 可选择平仓所有复制订单</p>
+        <p style="font-size:0.72em;">✅ 资金回到交易账户</p>
+        <p style="font-size:0.72em;">✅ 随时可提现</p>
+      </div>
+      <div class="hl-box" style="margin-top:8px;">
+        <p>⏰ 无锁仓期 · 资金随时可取 · 用户完全控制</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SLIDE 11: HOME SOP OVERVIEW ===== -->
+<section>
+  <h2 style="text-align:center;">🏠 HOME豪门 简化 SOP · 8 步完成</h2>
+  <div style="display:flex; gap:8px; flex-wrap:wrap; justify-content:center; margin-top:20px;">
+    <div style="background:var(--bg-card); border-radius:10px; padding:10px 12px; text-align:center; min-width:90px;">
+      <p style="font-size:1.4em;">📝</p>
+      <p style="font-size:0.68em; color:var(--gold); font-weight:700;">注册TMGM</p>
+      <p style="font-size:0.6em; color:var(--text-dim);">Live Account</p>
+    </div>
+    <p style="color:var(--gold); display:flex; align-items:center;">→</p>
+    <div style="background:var(--bg-card); border-radius:10px; padding:10px 12px; text-align:center; min-width:90px;">
+      <p style="font-size:1.4em;">🆔</p>
+      <p style="font-size:0.68em; color:var(--gold); font-weight:700;">完成KYC</p>
+      <p style="font-size:0.6em; color:var(--text-dim);">身份认证</p>
+    </div>
+    <p style="color:var(--gold); display:flex; align-items:center;">→</p>
+    <div style="background:var(--bg-card); border-radius:10px; padding:10px 12px; text-align:center; min-width:90px;">
+      <p style="font-size:1.4em;">💵</p>
+      <p style="font-size:0.68em; color:var(--gold); font-weight:700;">入金</p>
+      <p style="font-size:0.6em; color:var(--text-dim);">$500+</p>
+    </div>
+    <p style="color:var(--gold); display:flex; align-items:center;">→</p>
+    <div style="background:var(--bg-card); border-radius:10px; padding:10px 12px; text-align:center; min-width:90px; border:1px solid var(--gold);">
+      <p style="font-size:1.4em;">🔗</p>
+      <p style="font-size:0.68em; color:var(--gold); font-weight:700;">绑定Trader</p>
+      <p style="font-size:0.6em; color:var(--text-dim);">匹配交易员</p>
+    </div>
+    <p style="color:var(--gold); display:flex; align-items:center;">→</p>
+    <div style="background:var(--bg-card); border-radius:10px; padding:10px 12px; text-align:center; min-width:90px;">
+      <p style="font-size:1.4em;">🛡️</p>
+      <p style="font-size:0.68em; color:var(--gold); font-weight:700;">设止损</p>
+      <p style="font-size:0.6em; color:var(--text-dim);">风控</p>
+    </div>
+    <p style="color:var(--gold); display:flex; align-items:center;">→</p>
+    <div style="background:var(--bg-card); border-radius:10px; padding:10px 12px; text-align:center; min-width:90px; border:1px solid var(--green);">
+      <p style="font-size:1.4em;">🔄</p>
+      <p style="font-size:0.68em; color:var(--gold); font-weight:700;">自动跟单</p>
+      <p style="font-size:0.6em; color:var(--text-dim);">24/7运行</p>
+    </div>
+    <p style="color:var(--gold); display:flex; align-items:center;">→</p>
+    <div style="background:var(--bg-card); border-radius:10px; padding:10px 12px; text-align:center; min-width:90px;">
+      <p style="font-size:1.4em;">📊</p>
+      <p style="font-size:0.68em; color:var(--gold); font-weight:700;">每周检查</p>
+      <p style="font-size:0.6em; color:var(--text-dim);">5分钟</p>
+    </div>
+    <p style="color:var(--gold); display:flex; align-items:center;">→</p>
+    <div style="background:var(--bg-card); border-radius:10px; padding:10px 12px; text-align:center; min-width:90px; border:1px solid var(--gold);">
+      <p style="font-size:1.4em;">🏁</p>
+      <p style="font-size:0.68em; color:var(--gold); font-weight:700;">获利提取</p>
+      <p style="font-size:0.6em; color:var(--text-dim);">Stop→提现</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SLIDE 12: RISK LEVELS ===== -->
+<section>
+  <h2 style="text-align:center;">🛡️ HOME豪门 三级风控体系</h2>
+  <div class="cards cards-3">
+    <div class="card" style="border-top:4px solid var(--green);">
+      <div style="text-align:center;">
+        <p style="font-size:2em;">🟢</p>
+        <h4>Level 1</h4>
+        <p style="color:var(--gold);">&lt; USD 3,000</p>
+        <table class="mini-table">
+          <tr><td>最大回撤</td><td style="color:var(--green);"><strong>10%</strong></td></tr>
+          <tr><td>交易员</td><td><strong>1 个</strong></td></tr>
+          <tr><td>风格</td><td>保守型</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="card" style="border-top:4px solid var(--orange);">
+      <div style="text-align:center;">
+        <p style="font-size:2em;">🟠</p>
+        <h4>Level 2</h4>
+        <p style="color:var(--gold);">USD 3,000 – 10,000</p>
+        <table class="mini-table">
+          <tr><td>最大回撤</td><td style="color:var(--orange);"><strong>15%</strong></td></tr>
+          <tr><td>交易员</td><td><strong>2 个</strong></td></tr>
+          <tr><td>风格</td><td>平衡型</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="card" style="border-top:4px solid var(--red);">
+      <div style="text-align:center;">
+        <p style="font-size:2em;">🔴</p>
+        <h4>Level 3</h4>
+        <p style="color:var(--gold);">USD 10,000+</p>
+        <table class="mini-table">
+          <tr><td>最大回撤</td><td style="color:var(--red);"><strong>20%</strong></td></tr>
+          <tr><td>交易员</td><td><strong>3~5 个</strong></td></tr>
+          <tr><td>风格</td><td>分散配置</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="hl-box" style="text-align:center; margin-top:16px;">
+    <p>📌 专业资金管理逻辑 — 比 "无脑跟单" 模式更安全，按资金量级匹配风险敞口</p>
+  </div>
+</section>
+
+<!-- ===== SLIDE 13: Screenshot Checklist ===== -->
+<section>
+  <h2 style="text-align:center;">📸 截图采集清单 — 你还需截取的页面</h2>
+  <p style="text-align:center; color:var(--text-dim); font-size:0.72em;">以下截图来自第三方公开来源（TradingFinder/TMGM CDN）。Portal 内部页面需实际登录截取</p>
+  <div class="cards cards-2">
+    <div class="card" style="border-left:3px solid var(--green);">
+      <h4>✅ 已有截图（本手册已使用）</h4>
+      <ul style="font-size:0.68em;">
+        <li>TMGM 用户面板总览</li>
+        <li>账户创建界面</li>
+        <li>入金/提现界面</li>
+        <li>Signal Trading 登录页</li>
+        <li>手机 App 界面</li>
+        <li>Signal Center 监控</li>
+        <li>交易报表页面</li>
+      </ul>
+    </div>
+    <div class="card" style="border-left:3px solid var(--red);">
+      <h4>🔴 需要你实际登录截取</h4>
+      <ul style="font-size:0.68em;">
+        <li><strong>Provider 列表页</strong> — 所有可跟单的交易员</li>
+        <li><strong>Copy 配置弹窗</strong> — 金额/比例/止损设置</li>
+        <li><strong>My Portfolio 页面</strong> — 活跃订阅管理</li>
+        <li><strong>Pause/Stop 按钮位置</strong></li>
+        <li><strong>手机 App 跟单流程</strong>（如有）</li>
+        <li><strong>Provider Profile 详情页</strong></li>
+      </ul>
+    </div>
+  </div>
+  <div class="hl-box" style="text-align:center; margin-top:8px;">
+    <p>📸 截图建议：Windows 用 <strong>Win+Shift+S</strong> · Mac 用 <strong>Cmd+Shift+4</strong> · 手机用音量键+电源键</p>
+    <p style="font-size:0.65em; color:var(--text-dim);">截取后拖入本项目文件夹的 /screenshots 目录，我会帮你整合到手册中</p>
+  </div>
+</section>
+
+<!-- ===== SLIDE 14: CTA ===== -->
+<section>
+  <div class="logo-text" style="font-size:2.2em;">HOME 豪门</div>
+  <p style="text-align:center; color:var(--text-dim);">× TMGM Copy Trading</p>
+  <h2 style="text-align:center; margin-top:20px;">开启被动收入之旅</h2>
+  <div class="two-col" style="margin-top:20px;">
+    <div class="card" style="text-align:center;">
+      <p style="font-size:1.5em;">📋</p>
+      <h4>准备事项</h4>
+      <p style="font-size:0.7em;">✅ 身份证件 ✅ 邮箱 ✅ 手机号 ✅ 入金资金</p>
+    </div>
+    <div class="card" style="text-align:center;">
+      <p style="font-size:1.5em;">⚡</p>
+      <h4>立即开始</h4>
+      <p style="font-size:0.7em;">联系 HOME 客服 → 获取开户链接 → KYC → 绑定 Trader</p>
+    </div>
+  </div>
+  <div class="warn-box" style="text-align:center; margin-top:14px;">
+    <p style="font-size:0.7em;"><strong>风险声明：</strong>复制交易涉及市场风险。过往表现不代表未来收益。请根据个人风险承受能力合理配置资金。本手册仅供 HOME豪门 内部培训使用。</p>
+  </div>
+</section>
+
+</div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.0/reveal.min.js"></script>
+<script>
+  Reveal.initialize({
+    hash: true,
+    slideNumber: 'c/t',
+    width: 1200,
+    height: 700,
+    margin: 0.1,
+    transition: 'slide',
+    backgroundTransition: 'fade',
+    controls: true,
+    progress: true,
+    center: false
+  });
+</script>
+</body>
+</html>
