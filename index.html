@@ -22,50 +22,60 @@
     --orange: #e67e22;
   }
 
-  .reveal { font-family: "Microsoft YaHei", "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", sans-serif; }
-  .reveal .slides section { background: var(--bg); padding: 20px 30px; text-align: left; }
+  .reveal {
+    font-family: "Microsoft YaHei", "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", sans-serif;
+  }
+
+  .reveal .slides section {
+    background: var(--bg);
+    padding: 16px 24px;
+    text-align: left;
+    overflow-y: auto !important;
+    max-height: 100%;
+  }
   .reveal .slides section::before {
-    content: ''; position: absolute; top: 0; left: 30px; right: 30px; height: 3px;
+    content: '';
+    position: absolute;
+    top: 0; left: 24px; right: 24px;
+    height: 3px;
     background: linear-gradient(90deg, transparent, var(--gold), transparent);
   }
-  .reveal h1 { font-size: 2.2em; color: var(--gold); font-weight: 700; text-align: center; }
-  .reveal h2 { font-size: 1.5em; color: var(--gold-light); font-weight: 600; }
-  .reveal h3 { font-size: 1.15em; color: var(--gold-light); }
-  .reveal p, .reveal li { font-size: 0.78em; color: var(--text); line-height: 1.55; }
+
+  /* Typography — scaled down for better fit */
+  .reveal h1 { font-size: 1.8em; color: var(--gold); font-weight: 700; text-align: center; margin: 0 0 8px 0; }
+  .reveal h2 { font-size: 1.25em; color: var(--gold-light); font-weight: 600; margin: 0 0 6px 0; }
+  .reveal h3 { font-size: 1.05em; color: var(--gold-light); }
+  .reveal p, .reveal li { font-size: 0.7em; color: var(--text); line-height: 1.45; }
 
   /* Screenshot containers */
   .screenshot-box {
     background: var(--bg-card);
     border: 1px solid #2a2a2a;
-    border-radius: 12px;
-    padding: 12px;
+    border-radius: 10px;
+    padding: 10px;
     text-align: center;
-    margin: 8px 0;
+    margin: 6px 0;
   }
   .screenshot-box img {
     max-width: 100%;
-    max-height: 380px;
-    border-radius: 8px;
+    max-height: 260px;
+    border-radius: 6px;
     object-fit: contain;
   }
   .screenshot-box .caption {
-    font-size: 0.65em;
+    font-size: 0.6em;
     color: var(--text-dim);
-    margin-top: 6px;
+    margin-top: 4px;
   }
 
-  /* Annotated callout */
-  .callout {
-    position: relative;
-    display: inline-block;
-  }
+  /* Click badge */
   .click-badge {
     display: inline-block;
     background: var(--red);
     color: #fff;
-    padding: 3px 10px;
-    border-radius: 12px;
-    font-size: 0.68em;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 0.65em;
     font-weight: 700;
     animation: pulse 2s infinite;
   }
@@ -75,79 +85,274 @@
   }
 
   /* Two column layout */
-  .two-col { display: flex; gap: 16px; align-items: flex-start; }
-  .two-col > * { flex: 1; }
+  .two-col {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .two-col > * { flex: 1; min-width: 0; }
 
   /* Cards */
-  .cards { display: grid; gap: 12px; margin: 10px 0; }
+  .cards { display: grid; gap: 10px; margin: 8px 0; }
   .cards-2 { grid-template-columns: 1fr 1fr; }
   .cards-3 { grid-template-columns: 1fr 1fr 1fr; }
   .card {
-    background: var(--bg-card2); border: 1px solid #2a2a2a;
-    border-radius: 10px; padding: 14px;
+    background: var(--bg-card2);
+    border: 1px solid #2a2a2a;
+    border-radius: 10px;
+    padding: 12px;
+    overflow: hidden;
   }
-  .card h4 { color: var(--gold); font-size: 0.9em; margin: 0 0 6px 0; }
-  .card p, .card li { font-size: 0.7em; margin: 3px 0; }
+  .card h4 { color: var(--gold); font-size: 0.82em; margin: 0 0 5px 0; }
+  .card p, .card li { font-size: 0.65em; margin: 2px 0; }
 
   /* Stage badge */
   .stage-badge {
-    display: inline-block; background: var(--gold); color: #000;
-    padding: 4px 14px; border-radius: 16px; font-weight: 700; font-size: 0.75em; margin-bottom: 8px;
+    display: inline-block;
+    background: var(--gold);
+    color: #000;
+    padding: 3px 12px;
+    border-radius: 14px;
+    font-weight: 700;
+    font-size: 0.7em;
+    margin-bottom: 6px;
   }
 
-  /* Highlight box */
+  /* Highlight / Warn boxes */
   .hl-box {
     background: linear-gradient(135deg, rgba(201,168,76,0.12), rgba(201,168,76,0.03));
-    border-left: 3px solid var(--gold); padding: 10px 14px; border-radius: 0 6px 6px 0; margin: 10px 0;
+    border-left: 3px solid var(--gold);
+    padding: 8px 12px;
+    border-radius: 0 6px 6px 0;
+    margin: 8px 0;
   }
-  .hl-box p { margin: 3px 0; font-size: 0.72em; }
+  .hl-box p { margin: 2px 0; font-size: 0.66em; }
+
   .warn-box {
     background: linear-gradient(135deg, rgba(231,76,60,0.12), rgba(231,76,60,0.03));
-    border-left: 3px solid var(--red); padding: 10px 14px; border-radius: 0 6px 6px 0; margin: 10px 0;
+    border-left: 3px solid var(--red);
+    padding: 8px 12px;
+    border-radius: 0 6px 6px 0;
+    margin: 8px 0;
   }
-  .warn-box p { margin: 3px 0; font-size: 0.72em; }
+  .warn-box p { margin: 2px 0; font-size: 0.66em; }
 
   /* Steps list */
-  .step-list { list-style: none; padding: 0; }
+  .step-list { list-style: none; padding: 0; margin: 0; }
   .step-list li {
-    padding: 8px 12px; margin: 4px 0; background: var(--bg-card);
-    border-radius: 8px; font-size: 0.75em; display: flex; align-items: center; gap: 10px;
+    padding: 6px 10px;
+    margin: 3px 0;
+    background: var(--bg-card);
+    border-radius: 7px;
+    font-size: 0.68em;
+    display: flex;
+    align-items: center;
+    gap: 8px;
   }
   .step-list .step-num {
-    background: var(--gold); color: #000; min-width: 24px; height: 24px; line-height: 24px;
-    text-align: center; border-radius: 50%; font-weight: 700; font-size: 0.85em; flex-shrink: 0;
+    background: var(--gold);
+    color: #000;
+    min-width: 22px;
+    height: 22px;
+    line-height: 22px;
+    text-align: center;
+    border-radius: 50%;
+    font-weight: 700;
+    font-size: 0.8em;
+    flex-shrink: 0;
   }
 
   /* Flow */
   .flow-row {
-    display: flex; align-items: center; justify-content: center; gap: 6px; flex-wrap: wrap; margin: 12px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    flex-wrap: wrap;
+    margin: 10px 0;
   }
   .flow-step {
-    background: var(--bg-card); border: 1px solid var(--gold-dark); border-radius: 8px;
-    padding: 8px 12px; text-align: center; min-width: 70px; font-size: 0.72em;
+    background: var(--bg-card);
+    border: 1px solid var(--gold-dark);
+    border-radius: 7px;
+    padding: 6px 10px;
+    text-align: center;
+    min-width: 60px;
+    font-size: 0.65em;
   }
-  .flow-arrow { color: var(--gold); font-size: 1.2em; }
+  .flow-arrow { color: var(--gold); font-size: 1.1em; }
+
+  /* SOP flow — inline flex wrap */
+  .sop-flow {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-top: 14px;
+  }
+  .sop-step {
+    background: var(--bg-card);
+    border-radius: 10px;
+    padding: 8px 10px;
+    text-align: center;
+    min-width: 80px;
+    flex: 0 0 auto;
+  }
+  .sop-arrow {
+    color: var(--gold);
+    font-size: 1em;
+    flex: 0 0 auto;
+  }
 
   /* Logo */
   .logo-text {
-    font-size: 2.8em; font-weight: 900; letter-spacing: 4px; text-align: center;
+    font-size: 2.4em;
+    font-weight: 900;
+    letter-spacing: 4px;
+    text-align: center;
     background: linear-gradient(180deg, #e0c878 0%, #8b6914 100%);
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 
-  /* Scrollable container for overflow slides */
-  .scroll-area { max-height: 420px; overflow-y: auto; }
+  /* Progress bar */
+  .progress-bar {
+    height: 6px;
+    background: #2a2a2a;
+    border-radius: 3px;
+    margin: 6px 0;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    border-radius: 3px;
+  }
 
   /* Table */
-  .mini-table { width: 100%; border-collapse: collapse; font-size: 0.7em; }
-  .mini-table th { background: var(--gold-dark); color: #000; padding: 6px 10px; text-align: left; }
-  .mini-table td { padding: 5px 10px; border-bottom: 1px solid #2a2a2a; color: var(--text); }
+  .mini-table { width: 100%; border-collapse: collapse; font-size: 0.65em; }
+  .mini-table th { background: var(--gold-dark); color: #000; padding: 5px 8px; text-align: left; }
+  .mini-table td { padding: 4px 8px; border-bottom: 1px solid #2a2a2a; color: var(--text); }
 
-  @media (max-width: 768px) {
-    .two-col, .cards-2, .cards-3 { display: block; }
-    .two-col > * { margin-bottom: 10px; }
-    .reveal h1 { font-size: 1.4em; }
+  /* Overview grid */
+  .overview-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    margin: 10px 0;
+  }
+  .overview-item {
+    background: var(--bg-card);
+    border-radius: 10px;
+    padding: 10px 8px;
+    text-align: center;
+    border: 1px solid #2a2a2a;
+  }
+  .overview-item .phase { font-size: 0.6em; color: var(--gold); font-weight: 600; }
+  .overview-item .name { font-size: 0.72em; color: var(--text); font-weight: 600; margin-top: 3px; }
+  .overview-item .detail { font-size: 0.58em; color: var(--text-dim); margin-top: 3px; }
+
+  /* Large emoji icons in cards */
+  .big-emoji { font-size: 1.5em; }
+
+  /* ===================== RESPONSIVE ===================== */
+
+  /* Tablet / small laptop */
+  @media (max-width: 1024px) {
+    .reveal .slides section { padding: 14px 20px; }
+    .reveal .slides section::before { left: 20px; right: 20px; }
+    .reveal h1 { font-size: 1.5em; }
     .reveal h2 { font-size: 1.1em; }
+    .reveal p, .reveal li { font-size: 0.65em; }
+    .two-col { gap: 10px; }
+    .cards-3 { grid-template-columns: 1fr 1fr 1fr; }
+    .screenshot-box img { max-height: 200px; }
+    .overview-grid { grid-template-columns: 1fr 1fr; }
+    .sop-step { min-width: 70px; padding: 6px 8px; }
+  }
+
+  /* Tablet portrait */
+  @media (max-width: 768px) {
+    .reveal .slides section { padding: 12px 16px; }
+    .reveal .slides section::before { left: 16px; right: 16px; }
+    .reveal h1 { font-size: 1.3em; }
+    .reveal h2 { font-size: 1em; }
+    .reveal h3 { font-size: 0.9em; }
+    .reveal p, .reveal li { font-size: 0.62em; line-height: 1.4; }
+
+    /* Stack everything */
+    .two-col { display: block; }
+    .two-col > * { margin-bottom: 8px; }
+
+    .cards-2, .cards-3 { grid-template-columns: 1fr; }
+
+    .screenshot-box img { max-height: 160px; }
+    .logo-text { font-size: 1.8em; }
+
+    .overview-grid { grid-template-columns: 1fr 1fr; gap: 6px; }
+    .overview-item { padding: 8px 6px; }
+
+    .sop-flow { gap: 4px; }
+    .sop-step { min-width: 60px; padding: 5px 6px; font-size: 0.6em; }
+    .sop-arrow { font-size: 0.8em; }
+
+    .card { padding: 10px; }
+    .card h4 { font-size: 0.75em; }
+    .card p, .card li { font-size: 0.62em; }
+
+    .stage-badge { font-size: 0.65em; padding: 2px 10px; }
+    .click-badge { font-size: 0.6em; padding: 2px 6px; }
+  }
+
+  /* Phone */
+  @media (max-width: 480px) {
+    .reveal .slides section { padding: 8px 10px; }
+    .reveal .slides section::before { left: 10px; right: 10px; height: 2px; }
+    .reveal h1 { font-size: 1.1em; }
+    .reveal h2 { font-size: 0.9em; }
+    .reveal h3 { font-size: 0.8em; }
+    .reveal p, .reveal li { font-size: 0.58em; line-height: 1.35; }
+
+    .two-col { display: block; }
+    .two-col > * { margin-bottom: 6px; max-width: 100%; }
+
+    .cards-2, .cards-3 { grid-template-columns: 1fr; gap: 6px; }
+
+    .screenshot-box { padding: 6px; }
+    .screenshot-box img { max-height: 130px; }
+    .screenshot-box .caption { font-size: 0.55em; }
+    .logo-text { font-size: 1.4em; letter-spacing: 2px; }
+
+    .overview-grid { grid-template-columns: 1fr 1fr; gap: 4px; }
+    .overview-item { padding: 6px 4px; border-radius: 6px; }
+    .overview-item .phase { font-size: 0.55em; }
+    .overview-item .name { font-size: 0.62em; }
+
+    .sop-flow { gap: 3px; }
+    .sop-step { min-width: 50px; padding: 4px 5px; border-radius: 6px; }
+    .sop-step p { font-size: 0.5em !important; }
+    .sop-arrow { font-size: 0.7em; }
+
+    .card { padding: 8px; border-radius: 8px; }
+    .card h4 { font-size: 0.7em; }
+    .card p, .card li { font-size: 0.58em; }
+
+    .stage-badge { font-size: 0.6em; padding: 2px 8px; margin-bottom: 4px; }
+    .click-badge { font-size: 0.55em; padding: 1px 5px; border-radius: 8px; }
+
+    .hl-box, .warn-box { padding: 6px 8px; margin: 5px 0; }
+    .hl-box p, .warn-box p { font-size: 0.6em; }
+
+    .mini-table { font-size: 0.55em; }
+    .mini-table th, .mini-table td { padding: 3px 5px; }
+
+    .step-list li { padding: 4px 8px; font-size: 0.6em; gap: 5px; border-radius: 5px; }
+    .step-list .step-num { min-width: 18px; height: 18px; line-height: 18px; font-size: 0.7em; }
+
+    .flow-row { gap: 3px; }
+    .flow-step { padding: 4px 6px; font-size: 0.58em; min-width: 45px; }
+    .flow-arrow { font-size: 0.9em; }
   }
 </style>
 </head>
@@ -278,8 +483,8 @@
       <table class="mini-table">
         <tr><th>方案</th><th>入金</th><th>适合</th></tr>
         <tr><td>🟢 初级</td><td>USD 500</td><td>新手体验</td></tr>
-        <tr><td>🔵 标准</td><td>USD 1,000</td><td>稳健起步</td></tr>
-        <tr><td>🟠 高级</td><td>USD 5,000</td><td>收益目标明确</td></tr>
+        <tr><td>🔵 标准</td><td>USD 3,000</td><td>稳健起步</td></tr>
+        <tr><td>🟠 高级</td><td>USD 10,000</td><td>收益目标明确</td></tr>
         <tr><td>🔴 专业</td><td>USD 10,000+</td><td>资产配置级</td></tr>
       </table>
       <div class="hl-box" style="margin-top:10px;">
@@ -356,13 +561,13 @@
   <div class="cards cards-3" style="margin-top:16px;">
     <div class="card" style="border-top:3px solid var(--green); text-align:center;">
       <h4>📋 注册费</h4>
-      <p style="font-size:2em; color:var(--green);"><strong>$0</strong></p>
+      <p style="font-size:1.6em; color:var(--green);"><strong>$0</strong></p>
       <p style="font-size:0.65em; color:var(--text-dim);">加入 HOME豪门 跟单策略</p>
       <p style="font-size:0.65em; color:var(--text-dim);"><strong>完全免费</strong></p>
     </div>
     <div class="card" style="border-top:3px solid var(--green); text-align:center;">
       <h4>📊 管理费</h4>
-      <p style="font-size:2em; color:var(--green);"><strong>$0</strong></p>
+      <p style="font-size:1.6em; color:var(--green);"><strong>$0</strong></p>
       <p style="font-size:0.65em; color:var(--text-dim);">月度订阅费用</p>
       <p style="font-size:0.65em; color:var(--text-dim);"><strong>完全免费</strong></p>
     </div>
@@ -377,21 +582,21 @@
   <p style="color:var(--gold); font-weight:700; font-size:0.8em; text-align:center; margin-top:14px;">🏠 HOME豪门 业绩报酬分级</p>
   <div class="cards cards-3">
     <div class="card" style="border-top:4px solid var(--green); text-align:center;">
-      <p style="font-size:1.5em;">🥉</p>
+      <p class="big-emoji">🥉</p>
       <h4>入门级</h4>
       <p style="color:var(--gold); font-size:0.85em;">跟单资金 &lt; USD 3,000</p>
       <p style="font-size:1em;">业绩报酬 <strong style="color:var(--gold);">50%</strong></p>
       <p style="font-size:0.6em; color:var(--text-dim);">仅从盈利部分扣除</p>
     </div>
     <div class="card" style="border-top:4px solid var(--orange); text-align:center;">
-      <p style="font-size:1.5em;">🥈</p>
+      <p class="big-emoji">🥈</p>
       <h4>进阶级</h4>
       <p style="color:var(--gold); font-size:0.85em;">USD 3,000 – 10,000</p>
       <p style="font-size:1em;">业绩报酬 <strong style="color:var(--gold);">40%</strong></p>
       <p style="font-size:0.6em; color:var(--text-dim);">资金越大 · 费率越低</p>
     </div>
     <div class="card" style="border-top:4px solid var(--red); text-align:center;">
-      <p style="font-size:1.5em;">🥇</p>
+      <p class="big-emoji">🥇</p>
       <h4>专业级</h4>
       <p style="color:var(--gold); font-size:0.85em;">USD 10,000+</p>
       <p style="font-size:1em;">业绩报酬 <strong style="color:var(--gold);">30%</strong></p>
@@ -646,59 +851,59 @@
 <!-- ===== SLIDE 11: HOME SOP OVERVIEW ===== -->
 <section>
   <h2 style="text-align:center;">🏠 HOME豪门 简化 SOP · 9 步完成</h2>
-  <div style="display:flex; gap:8px; flex-wrap:wrap; justify-content:center; margin-top:20px;">
-    <div style="background:var(--bg-card); border-radius:10px; padding:10px 12px; text-align:center; min-width:90px;">
-      <p style="font-size:1.4em;">📝</p>
-      <p style="font-size:0.68em; color:var(--gold); font-weight:700;">注册TMGM</p>
-      <p style="font-size:0.6em; color:var(--text-dim);">Live Account</p>
+  <div class="sop-flow">
+    <div class="sop-step">
+      <p class="big-emoji">📝</p>
+      <p style="font-size:0.65em; color:var(--gold); font-weight:700; margin:0;">注册TMGM</p>
+      <p style="font-size:0.55em; color:var(--text-dim); margin:0;">Live Account</p>
     </div>
-    <p style="color:var(--gold); display:flex; align-items:center;">→</p>
-    <div style="background:var(--bg-card); border-radius:10px; padding:10px 12px; text-align:center; min-width:90px;">
-      <p style="font-size:1.4em;">🆔</p>
-      <p style="font-size:0.68em; color:var(--gold); font-weight:700;">完成KYC</p>
-      <p style="font-size:0.6em; color:var(--text-dim);">身份认证</p>
+    <span class="sop-arrow">→</span>
+    <div class="sop-step">
+      <p class="big-emoji">🆔</p>
+      <p style="font-size:0.65em; color:var(--gold); font-weight:700; margin:0;">完成KYC</p>
+      <p style="font-size:0.55em; color:var(--text-dim); margin:0;">身份认证</p>
     </div>
-    <p style="color:var(--gold); display:flex; align-items:center;">→</p>
-    <div style="background:var(--bg-card); border-radius:10px; padding:10px 12px; text-align:center; min-width:90px;">
-      <p style="font-size:1.4em;">💵</p>
-      <p style="font-size:0.68em; color:var(--gold); font-weight:700;">入金</p>
-      <p style="font-size:0.6em; color:var(--text-dim);">$500+</p>
+    <span class="sop-arrow">→</span>
+    <div class="sop-step">
+      <p class="big-emoji">💵</p>
+      <p style="font-size:0.65em; color:var(--gold); font-weight:700; margin:0;">入金</p>
+      <p style="font-size:0.55em; color:var(--text-dim); margin:0;">$500+</p>
     </div>
-    <p style="color:var(--gold); display:flex; align-items:center;">→</p>
-    <div style="background:var(--bg-card); border-radius:10px; padding:10px 12px; text-align:center; min-width:90px; border:1px solid var(--gold);">
-      <p style="font-size:1.4em;">🔗</p>
-      <p style="font-size:0.68em; color:var(--gold); font-weight:700;">绑定HOME</p>
-      <p style="font-size:0.6em; color:var(--text-dim);">搜索HOME豪门</p>
+    <span class="sop-arrow">→</span>
+    <div class="sop-step" style="border:1px solid var(--gold);">
+      <p class="big-emoji">🔗</p>
+      <p style="font-size:0.65em; color:var(--gold); font-weight:700; margin:0;">绑定HOME</p>
+      <p style="font-size:0.55em; color:var(--text-dim); margin:0;">搜索HOME豪门</p>
     </div>
-    <p style="color:var(--gold); display:flex; align-items:center;">→</p>
-    <div style="background:var(--bg-card); border-radius:10px; padding:10px 12px; text-align:center; min-width:90px;">
-      <p style="font-size:1.4em;">🛡️</p>
-      <p style="font-size:0.68em; color:var(--gold); font-weight:700;">设止损</p>
-      <p style="font-size:0.6em; color:var(--text-dim);">风控</p>
+    <span class="sop-arrow">→</span>
+    <div class="sop-step">
+      <p class="big-emoji">🛡️</p>
+      <p style="font-size:0.65em; color:var(--gold); font-weight:700; margin:0;">设止损</p>
+      <p style="font-size:0.55em; color:var(--text-dim); margin:0;">风控</p>
     </div>
-    <p style="color:var(--gold); display:flex; align-items:center;">→</p>
-    <div style="background:var(--bg-card); border-radius:10px; padding:10px 12px; text-align:center; min-width:90px; border:1px solid var(--red);">
-      <p style="font-size:1.4em;">▶️</p>
-      <p style="font-size:0.68em; color:var(--gold); font-weight:700;">激活订阅</p>
-      <p style="font-size:0.6em; color:var(--text-dim);">手动启用</p>
+    <span class="sop-arrow">→</span>
+    <div class="sop-step" style="border:1px solid var(--red);">
+      <p class="big-emoji">▶️</p>
+      <p style="font-size:0.65em; color:var(--gold); font-weight:700; margin:0;">激活订阅</p>
+      <p style="font-size:0.55em; color:var(--text-dim); margin:0;">手动启用</p>
     </div>
-    <p style="color:var(--gold); display:flex; align-items:center;">→</p>
-    <div style="background:var(--bg-card); border-radius:10px; padding:10px 12px; text-align:center; min-width:90px; border:1px solid var(--green);">
-      <p style="font-size:1.4em;">🔄</p>
-      <p style="font-size:0.68em; color:var(--gold); font-weight:700;">自动跟单</p>
-      <p style="font-size:0.6em; color:var(--text-dim);">24/7运行</p>
+    <span class="sop-arrow">→</span>
+    <div class="sop-step" style="border:1px solid var(--green);">
+      <p class="big-emoji">🔄</p>
+      <p style="font-size:0.65em; color:var(--gold); font-weight:700; margin:0;">自动跟单</p>
+      <p style="font-size:0.55em; color:var(--text-dim); margin:0;">24/7运行</p>
     </div>
-    <p style="color:var(--gold); display:flex; align-items:center;">→</p>
-    <div style="background:var(--bg-card); border-radius:10px; padding:10px 12px; text-align:center; min-width:90px;">
-      <p style="font-size:1.4em;">📊</p>
-      <p style="font-size:0.68em; color:var(--gold); font-weight:700;">每周检查</p>
-      <p style="font-size:0.6em; color:var(--text-dim);">5分钟</p>
+    <span class="sop-arrow">→</span>
+    <div class="sop-step">
+      <p class="big-emoji">📊</p>
+      <p style="font-size:0.65em; color:var(--gold); font-weight:700; margin:0;">每周检查</p>
+      <p style="font-size:0.55em; color:var(--text-dim); margin:0;">5分钟</p>
     </div>
-    <p style="color:var(--gold); display:flex; align-items:center;">→</p>
-    <div style="background:var(--bg-card); border-radius:10px; padding:10px 12px; text-align:center; min-width:90px; border:1px solid var(--gold);">
-      <p style="font-size:1.4em;">🏁</p>
-      <p style="font-size:0.68em; color:var(--gold); font-weight:700;">获利提取</p>
-      <p style="font-size:0.6em; color:var(--text-dim);">Stop→提现</p>
+    <span class="sop-arrow">→</span>
+    <div class="sop-step" style="border:1px solid var(--gold);">
+      <p class="big-emoji">🏁</p>
+      <p style="font-size:0.65em; color:var(--gold); font-weight:700; margin:0;">获利提取</p>
+      <p style="font-size:0.55em; color:var(--text-dim); margin:0;">Stop→提现</p>
     </div>
   </div>
 </section>
@@ -710,7 +915,7 @@
   <div class="cards cards-3">
     <div class="card" style="border-top:4px solid var(--green);">
       <div style="text-align:center;">
-        <p style="font-size:2em;">🥉</p>
+        <p class="big-emoji">🥉</p>
         <h4>Level 1 · 入门级</h4>
         <p style="color:var(--gold);">&lt; USD 3,000</p>
         <table class="mini-table">
@@ -722,7 +927,7 @@
     </div>
     <div class="card" style="border-top:4px solid var(--orange);">
       <div style="text-align:center;">
-        <p style="font-size:2em;">🥈</p>
+        <p class="big-emoji">🥈</p>
         <h4>Level 2 · 进阶级</h4>
         <p style="color:var(--gold);">USD 3,000 – 10,000</p>
         <table class="mini-table">
@@ -734,7 +939,7 @@
     </div>
     <div class="card" style="border-top:4px solid var(--red);">
       <div style="text-align:center;">
-        <p style="font-size:2em;">🥇</p>
+        <p class="big-emoji">🥇</p>
         <h4>Level 3 · 专业级</h4>
         <p style="color:var(--gold);">USD 10,000+</p>
         <table class="mini-table">
@@ -792,12 +997,12 @@
   <h2 style="text-align:center; margin-top:20px;">开启被动收入之旅</h2>
   <div class="two-col" style="margin-top:20px;">
     <div class="card" style="text-align:center;">
-      <p style="font-size:1.5em;">📋</p>
+      <p class="big-emoji">📋</p>
       <h4>准备事项</h4>
       <p style="font-size:0.7em;">✅ 身份证件 ✅ 邮箱 ✅ 手机号 ✅ 入金资金</p>
     </div>
     <div class="card" style="text-align:center;">
-      <p style="font-size:1.5em;">⚡</p>
+      <p class="big-emoji">⚡</p>
       <h4>立即开始</h4>
       <p style="font-size:0.7em;">联系 HOME 客服 → 获取专属开户链接 → KYC → 绑定 HOME豪门 Provider</p>
     </div>
@@ -815,14 +1020,17 @@
   Reveal.initialize({
     hash: true,
     slideNumber: 'c/t',
-    width: 1200,
-    height: 700,
-    margin: 0.1,
+    width: 1100,
+    height: 650,
+    margin: 0.08,
+    minScale: 0.2,
+    maxScale: 2.0,
     transition: 'slide',
     backgroundTransition: 'fade',
     controls: true,
     progress: true,
-    center: false
+    center: false,
+    disableLayout: false
   });
 </script>
 </body>
