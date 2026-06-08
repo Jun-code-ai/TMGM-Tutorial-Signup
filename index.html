@@ -305,6 +305,19 @@
     .click-badge { font-size: 0.6em; padding: 2px 6px; }
   }
 
+  /* Smooth scrolling for all slides */
+  .reveal .slides section {
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+  }
+
+  /* Bigger nav arrows for touch */
+  .reveal .controls { opacity: 0.85; }
+  .reveal .controls-arrow {
+    width: 36px;
+    height: 36px;
+  }
+
   /* Phone */
   @media (max-width: 480px) {
     .reveal .slides section { padding: 8px 10px; }
@@ -1030,8 +1043,43 @@
     controls: true,
     progress: true,
     center: false,
-    disableLayout: false
+    disableLayout: false,
+    touch: false,
+    navigationMode: 'default'
   });
+
+  /* --- Mobile touch: horizontal swipe changes slides, vertical scroll passes through --- */
+  (function() {
+    var touchStartX = 0, touchStartY = 0;
+    var SWIPE_THRESHOLD = 50;     // min horizontal distance for swipe
+    var ANGLE_THRESHOLD = 35;     // max degrees from horizontal to count as swipe
+
+    document.addEventListener('touchstart', function(e) {
+      if (e.touches.length === 1) {
+        touchStartX = e.touches[0].clientX;
+        touchStartY = e.touches[0].clientY;
+      }
+    }, { passive: true });
+
+    document.addEventListener('touchend', function(e) {
+      if (e.changedTouches.length === 0) return;
+      var dx = e.changedTouches[0].clientX - touchStartX;
+      var dy = e.changedTouches[0].clientY - touchStartY;
+      var absDx = Math.abs(dx);
+      var absDy = Math.abs(dy);
+
+      // Only intercept if swipe is more horizontal than vertical
+      if (absDx > SWIPE_THRESHOLD && absDx > absDy) {
+        // Calculate angle from horizontal
+        var angle = Math.atan2(absDy, absDx) * 180 / Math.PI;
+        if (angle < ANGLE_THRESHOLD) {
+          if (dx < 0) Reveal.next();
+          else Reveal.prev();
+        }
+      }
+      // Vertical scrolls and small movements pass through to native scrolling
+    }, { passive: true });
+  })();
 </script>
 </body>
 </html>
